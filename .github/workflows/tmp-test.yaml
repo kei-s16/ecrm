@@ -1,0 +1,26 @@
+name: check composite action
+
+on:
+  push:
+    branches:
+      - tmp/test-actions
+
+jobs:
+  check:
+    strategy:
+      matrix:
+        os: [
+          ubuntu-latest,
+          ubuntu-24.04,
+          ubuntu-22.04,
+          ubuntu-24.04-arm,
+          ubuntu-22.04-arm
+        ]
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v4
+    - uses: kei-s16/ecrm@feat/add-setup-action
+    - name: "check ecrm version"
+      run: |
+        ecrm version
+
