@@ -5,6 +5,9 @@ on:
     branches:
       - tmp/test-actions
 
+env:
+  GH_TOKEN: ${{ github.token }}
+
 jobs:
   check:
     strategy:
